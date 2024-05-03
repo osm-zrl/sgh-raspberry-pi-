@@ -12,20 +12,20 @@ try:
     })
 
     # Define callback functions for each data field
-    def handle_pump_duration_change(event):
-        pump_duration = event.data
-        print("pump duration status changed:", pump_duration)
+    def handle_door_open_change(event):
+        door_open = event.data
+        print("door status changed:", door_open)
 
     def handle_pump_change(event):
         pump_status = event.data
         print("Pump status changed:", pump_status)
 
     # Get references to the specific data fields
-    pump_dur_ref = db.reference('/devices/pumpUpDuration')
+    door_ref = db.reference('/devices/doorOpen')
     pump_ref = db.reference('/devices/pumpOn')
 
     # Listen for changes on each data field
-    pump_dur_ref.listen(handle_pump_duration_change)
+    door_ref.listen(handle_door_open_change)
     pump_ref.listen(handle_pump_change)
 
 except Exception as e:
