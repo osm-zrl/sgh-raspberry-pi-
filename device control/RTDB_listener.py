@@ -1,20 +1,28 @@
 import firebase_admin
 from firebase_admin import credentials, db
 import logging
+from door import door
 
 logging.basicConfig(level=logging.ERROR)
 
 try:
+    #/home/pi/Desktop/firebase/conf.json
     # Initialize Firebase Admin SDK
-    cred = credentials.Certificate("conf.json")
+    cred = credentials.Certificate("/home/pi/Desktop/firebase/conf.json")
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://sghproject-d4503-default-rtdb.firebaseio.com/'
     })
+
+    door1 = door(17,90,180)
 
     # Define callback functions for each data field
     def handle_door_open_change(event):
         door_open = event.data
         print("door status changed:", door_open)
+        if(door_open):
+            door1.openDoor()
+        else:
+            door1.closeDoor()
 
     def handle_pump_change(event):
         pump_status = event.data
