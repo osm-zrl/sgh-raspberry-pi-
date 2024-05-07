@@ -1,0 +1,9 @@
+----------------------SHT20----------------
+gnd(black) -> gnd
+power(red) -> power 3v
+sda(yellow) -> gpio3
+sCl (green) -> gpio2
+
+
+--------------------dht22--------------------
+sda(yellow) -> gpio4
